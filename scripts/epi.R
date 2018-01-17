@@ -3,7 +3,7 @@ require(dplyr)
 require(plotly)
 
 # Read in data
-setwd("E:/epi/scripts")
+setwd("E:/epi/data")
 epi <- readxl::read_xlsx("2016-epi.xlsx", sheet = 3)
 
 # View data
@@ -61,3 +61,6 @@ epi.plot
 plot(epi$air_quality, epi$health_impacts, xlab = "air_quality", 
      ylab = "health_impacts", 
      main = "Air and Health Performance Index")
+
+boxplot(epi$air_quality, epi$environmental_health)
+boxplot(epi$air_quality, epi$health_impacts)
