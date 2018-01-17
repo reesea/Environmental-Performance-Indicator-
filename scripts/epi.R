@@ -52,7 +52,12 @@ epi.plot = ggplot(epi, aes(x = air_quality, y = health_impacts)) +
   geom_smooth(method="lm")
 epi.plot
 
-epi.plot = ggplot(epi, aes(x = air_quality, y = environmental_health)) +
+epi.plot = ggplot(epi, aes(x = air_quality, 
+                           y = environmental_health)) +
   geom_point() +
   geom_smooth(method="lm")
 epi.plot
+
+plot(epi$air_quality, epi$health_impacts, xlab = "air_quality", 
+     ylab = "health_impacts", 
+     main = "Air and Health Performance Index")
