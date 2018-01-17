@@ -49,18 +49,29 @@ summary(epi)
 
 epi.plot = ggplot(epi, aes(x = air_quality, y = health_impacts)) +
   geom_point() +
-  geom_smooth(method="lm")
+  geom_smooth(method="lm", color = "red")
 epi.plot
 
 epi.plot = ggplot(epi, aes(x = air_quality, 
                            y = environmental_health)) +
   geom_point() +
-  geom_smooth(method="lm")
+  geom_smooth(method="lm", color = "blue")
 epi.plot
 
 plot(epi$air_quality, epi$health_impacts, xlab = "air_quality", 
      ylab = "health_impacts", 
-     main = "Air and Health Performance Index")
+     main = "Air and Health Performance", 
+     abline(lm(epi$health_impacts ~ epi$air_quality)))
 
 boxplot(epi$air_quality, epi$environmental_health)
 boxplot(epi$air_quality, epi$health_impacts)
+
+p <- plot_ly(data = epi, x = ~air_quality, y = ~environmental_health,
+             marker = list(size = 10,
+                           color = 'rgba(255, 182, 193, .9)',
+                           line = list(color = 'rgba(152, 0, 0, .8)',
+                                       width = 2))) %>%
+  layout(title = 'Styled Scatter',
+         yaxis = list(zeroline = FALSE),
+         xaxis = list(zeroline = FALSE))
+p
