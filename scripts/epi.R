@@ -6,13 +6,7 @@ require(plotly)
 setwd("E:/epi/data")
 epi <- readxl::read_xlsx("2016-epi.xlsx", sheet = 3)
 
-# View data
-View(epi)
 dim(epi)
-head(epi)
-tail(epi)
-xtabs(~Country, epi)
-str(epi)
 
 # Data Preprocessing
 names(epi)[names(epi) == 'Country'] <- 
@@ -58,11 +52,20 @@ epi.plot = ggplot(epi, aes(x = air_quality,
   geom_smooth(method="lm", color = "blue")
 epi.plot
 
-plot(epi$air_quality, epi$health_impacts, xlab = "air_quality", 
-     ylab = "health_impacts", 
-     main = "Air and Health Performance", 
-     abline(lm(epi$health_impacts ~ epi$air_quality)))
+epi_air = sample(epi$air_quality, replace = T)
+epi_environmental = sample(epi$environmental_health, replace = T)
+C = list(epi_air, epi_environmental)
+names(C) = c(paste("Air Quality\n n = " , length(epi_air) , sep=""), 
+             paste("Environmental Health\n n = " , 
+                   length(epi_environmental) , sep=""))
+par(mgp=c(3,2,0))
+boxplot(C, col = rgb(0.9,0.9,0.9,0.9), ylab = "value" )
 
-boxplot(epi$air_quality, epi$environmental_health)
-boxplot(epi$air_quality, epi$health_impacts)
-
+epi_air = sample(epi$air_quality, replace = T)
+epi_health = sample(epi$health_impacts, replace = T)
+C = list(epi_air, epi_health)
+names(C) = c(paste("Air Quality\n n = " , length(epi_air) , sep=""), 
+             paste("Health Impacts\n n = " , 
+                   length(epi_health) , sep=""))
+par(mgp=c(3,2,0))
+boxplot(C, col = rgb(0.9,0.9,0.9,0.9), ylab = "value" )
