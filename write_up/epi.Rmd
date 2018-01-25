@@ -18,7 +18,7 @@ require(plotly)
 # Read in data
 There were 180 countries in 40 categories reduced to 10 categories for exploratory purposes.
 
-```{r, include = FALSE}
+```{r, include = FALSE} 
 setwd("E:/epi/data")
 epi <- readxl::read_xlsx("2016-epi.xlsx", sheet = 3)
 ```
