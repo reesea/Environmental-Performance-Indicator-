@@ -1,4 +1,4 @@
-# epi
+# epi (Environmental Performance Index)
 Objective / Issue Category: Environmental Health / Health Impacts
 
 What it Measures: Summary environmental risk exposure evaluates how much of the
